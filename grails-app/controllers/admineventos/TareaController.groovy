@@ -5,6 +5,7 @@ package admineventos
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import grails.converters.JSON
+import grails.converters.XML
 
 @Transactional(readOnly = true)
 class TareaController {
@@ -110,6 +111,24 @@ class TareaController {
         }else{
             tareas = Tarea.findAllByEvento(Evento.get(params.id))
         }
-        render tareas as JSON
+        
+        def resultado = [:]
+        resultado['code'] = 'ok'
+        resultado['msg'] = 'Tareas Enviadas'
+        resultado['tareas'] = tareas
+        
+        withFormat{
+            html {render resultado as JSON}
+            json {render resultado as JSON}
+            xml {render resultado as XML}
+        }
+    }
+    
+    @Transactional
+    def actualizaStatus(){
+        def tarea = Tarea.get(params?.id)
+        tarea.status = params.nuevoStatus
+        tarea.save(flush: true)
+        render "Tarea actualizada correctamente"
     }
 }

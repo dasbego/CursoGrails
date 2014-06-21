@@ -1,6 +1,10 @@
 package admineventos
 
 class Tarea {
+    
+    def mailService
+    static transients = ['mailService']
+    
     String nombre
     String status
     
@@ -12,5 +16,15 @@ class Tarea {
     
     String toString(){
         "${nombre} (${status})"
+    }
+    
+    def afterUpdate(){
+        if(status=='Completada'){
+            mailService.sendMail {
+                to "gbego91@gmail.com"
+                subject "Actualización en tarea!"
+                body "La tarea ${nombre} fue completada"
+            }
+        }
     }
 }

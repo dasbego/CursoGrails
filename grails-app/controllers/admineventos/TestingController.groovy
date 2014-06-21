@@ -47,4 +47,13 @@ class TestingController {
             xml{ render "Esto es formato XML"}
         }
     }
+    
+    def pruebaMail(){
+        sendMail {
+            to "gbego91@gmail.com"
+            subject "Hola desde Grails App"
+            body "Funcionando! :) "
+        }
+        render "prueba de correo"
+    }
 }

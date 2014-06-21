@@ -70,6 +70,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
 
         compile ":pretty-time:2.1.3.Final-1.0.1"
+        compile ":mail:1.0.6"
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
         //compile ":less-asset-pipeline:1.7.0"
