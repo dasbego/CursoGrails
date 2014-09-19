@@ -129,3 +129,31 @@ grails {
               "mail.smtp.socketFactory.fallback":"false"]
    }
 }
+
+// Added by the Spring Security Core plugin:
+//permitir ue todos los recursos estne libres
+//grails.plugin.springsecurity.rejectIfNoRule = false
+//grails.plugin.fii.rejectPublicInvocations = false
+
+//permitir logout por URL, no por post
+grails.plugin.springsecurity.logout.postOnly = false
+
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'admineventos.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'admineventos.UserRole'
+grails.plugin.springsecurity.authority.className = 'admineventos.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll'],
+        '/assets/**':                     ['permitAll'],
+        '/testing/otroMetodo':            ['ROLE_USER'],
+        '/testing/otroMetodoAdmin':       ['ROLE_USER', 'ROLE_ADMIN'],
+        '/testing/metodoSoloUsuarios':    ['ROLE_USER']
+]
+//Configuracion para UrlMapping
+grails.plugin.springsecurity.securityConfigType = "Requestmap"
+grails.plugin.springsecurity.requestMap.className = 'admineventos.Requestmap'

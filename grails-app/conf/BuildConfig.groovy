@@ -59,8 +59,8 @@ grails.project.dependency.resolution = {
         build ":tomcat:7.0.54"
 
         // plugins for the compile step
-        compile ":scaffolding:2.1.1"
-        compile ':cache:1.1.6'
+        compile ":scaffolding:2.1.2"
+        compile ':cache:1.1.7'
         compile ":asset-pipeline:1.8.11"
         
 
@@ -71,6 +71,7 @@ grails.project.dependency.resolution = {
 
         compile ":pretty-time:2.1.3.Final-1.0.1"
         compile ":mail:1.0.6"
+        compile ":spring-security-core:2.0-RC3"
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
         //compile ":less-asset-pipeline:1.7.0"

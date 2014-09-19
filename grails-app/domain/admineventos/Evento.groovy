@@ -6,7 +6,7 @@ class Evento {
     Date fecha
     Double precio
     
-    static belongsTo = [lugar: Lugar, responsable:Usuario]
+    static belongsTo = [lugar: Lugar, responsable:User]
     static hasMany = [tareas:Tarea]
     
     static constraints = {

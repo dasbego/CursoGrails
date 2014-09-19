@@ -26,8 +26,13 @@
                 <div class="col-xs-9">
                     <h3>Tareas</h3>
                     <div id="listaTareas">Lista vacía.</div>
-                    <hr>
-                    <input type="text" id="nuevaTarea" />
+                    <hr
+                    <sec:ifAllGranted roles="ROLE_ADMIN">
+                        <input type="text" id="nuevaTarea" placeholder="Nueva Tarea"/>
+                    </sec:ifAllGranted>
+                    <sec:ifNotGranted roles="ROLE_ADMIN">
+                        <p>No está autorizado para agregar más tareas</p>   
+                    </sec:ifNotGranted>
                 </div>
             </div>
         </div>

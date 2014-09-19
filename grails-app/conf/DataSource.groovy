@@ -20,7 +20,7 @@ environments {
             dbCreate = "update" // one of 'create', 'create-drop','update'
             url = "jdbc:mysql://localhost/adminEventos"
             username = "root"
-            password = ""
+            password = "bego11"
         }
     }
 

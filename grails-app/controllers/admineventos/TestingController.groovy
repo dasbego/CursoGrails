@@ -1,17 +1,31 @@
 package admineventos
 
 import org.springframework.transaction.annotation.Transactional
+import grails.plugin.springsecurity.annotation.Secured
 
 class TestingController {
 
+    @Secured(['ROLE_ADMIN'])
     def index() { 
         render "bien!"
-        def parametros = [max:10, offset:1, sort:"nombre"]
-        println Usuario.list(parametros)
     }
     
+    def otroMetodo(){
+        render "Estamos dentro de otro método"
+    }
+    
+    def otroMetodoAdmin(){
+        render "otro metodo Admin"
+    }
+    
+    @Secured(["hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')"])
+    def metodoSoloUsuarios(){
+        render "Solo usuarios logueados pueden ver este metodo"
+    }
+    
+    
     def pruebaNoTransaccion(){
-        def usuario = new Usuario([nombre:"Luis", correo:"usuarioFalso@gmail.com"])
+        def usuario = new User([nombre:"Luis", correo:"usuarioFalso@gmail.com"])
         if(!usuario.save()){
             render "Ocurrio un error"
         }
@@ -23,7 +37,7 @@ class TestingController {
     @Transactional
     def pruebaTransaccional()
     {
-        def usuario = new Usuario([nombre:"Ana", correo:"usuarioFalso@gmail.com"])
+        def usuario = new User([nombre:"Ana", correo:"usuarioFalso@gmail.com"])
         if(!usuario.save()){    
             render "Ocurrio un error"
         }
@@ -33,7 +47,7 @@ class TestingController {
         
     }
     
-    def parametroInteligente(Usuario usuarioInstance)
+    def parametroInteligente(User usuarioInstance)
     {
         render usuarioInstance
         
